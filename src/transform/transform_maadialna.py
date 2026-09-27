@@ -2,57 +2,32 @@ import re
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
-
 from src.extract.extract_maadialna import extract_bassins
-
-
-
 def extract_number(text):
     """
     Extraire un nombre depuis un texte arabe
     """
-
     result = re.search(r'\d+(\.\d+)?', text)
-
     if result:
         return float(result.group())
-
     return None
-
-
-
 def parse_barrages(html):
     """
     Extraction des barrages depuis le HTML modal
     """
-
     soup = BeautifulSoup(
         html,
-        "html.parser"
-    )
-
+        "html.parser")
     barrages = []
-
     modal_body = soup.find(
         "div",
-        class_="modal-body"
-    )
-
+        class_="modal-body")
     if not modal_body:
         return barrages
-
-
     elements = modal_body.find_all(
-        ["p", "ul"]
-    )
-
-
+        ["p", "ul"])
     barrage_name = None
-
-
     for element in elements:
-
-
         # Récupération du nom du barrage
         if element.name == "p":
 

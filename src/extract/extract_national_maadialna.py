@@ -1,60 +1,32 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-
-
 URL = "https://www.maadialna.ma/ar"
-
-
-
 def extract_number(text):
-
     """
     Extraire un nombre depuis un texte arabe
     """
-
     result = re.search(r'\d+(\.\d+)?', text)
-
     if result:
         return float(result.group())
-
     return None
-
-
-
 def extract_national_statistics():
-
     response = requests.get(URL)
-
     response.encoding = "utf-8"
-
-
     soup = BeautifulSoup(
         response.text,
-        "html.parser"
-    )
-
-
+        "html.parser")
     stats = {
 
         "ressources_totales": None,
 
         "taux_remplissage_national": None,
 
-        "date_statistique": None
-
-    }
-
-
-
+        "date_statistique": None}
     # bloc حالة السدود في المغرب
-
     bloc = soup.find(
         "div",
-        class_="entete-etat-barrage"
-    )
-
-
+        class_="entete-etat-barrage")
     if not bloc:
         return stats
 
@@ -62,16 +34,9 @@ def extract_national_statistics():
 
     texte = bloc.get_text(
         " ",
-        strip=True
-    )
-
-
+        strip=True)
     print("DEBUG :")
     print(texte)
-
-
-
-    # Ressources hydriques
 
     if "مليار متر مكعب" in texte:
 

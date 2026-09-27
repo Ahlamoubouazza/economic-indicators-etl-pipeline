@@ -1,8 +1,63 @@
+# ==========================================
+# Python
+# ==========================================
 .venv/
+venv/
 __pycache__/
+*.py[cod]
 *.pyc
+
+# ==========================================
+# Environment variables / secrets
+# ==========================================
 .env
-data/raw/
-data/processed/
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ==========================================
+# Logs / Airflow runtime
+# ==========================================
+logs/
 *.log
+
+# ==========================================
+# Database backups
+# ==========================================
+*.sql
+*.dump
+*.backup
+
+# ==========================================
+# Temporary files
+# ==========================================
 .DS_Store
+Thumbs.db
+tempCodeRunnerFile.py
+DATE
+
+# ==========================================
+# Generated / diagnostic files
+# ==========================================
+data/diagnostic_ciment/
+data/diagnostic_ciment*.csv
+data/diagnostic_ciment*.json
+data/resultats_ia_ciment.json
+
+# ==========================================
+# PDFs / temporary source documents
+# ==========================================
+data/pdf/
+data/pdf_a_analyser/
+
+# ==========================================
+# Internship report
+# ==========================================
+rapport_stage/
+
+# ==========================================
+# IDE
+# ==========================================
+.vscode/
+.idea/
